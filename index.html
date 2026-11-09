@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--
+    Inspired by the Aurora portfolio template from Freefolio (OSS Philippines).
+    Source template: https://github.com/OSSPhilippines/freefolio/tree/main/aurora
+    Live reference: https://freefolio.web.app/aurora/
+
+    MIT License
+
+    Copyright (c) 2022 Open Source Software PH
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+  -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal portfolio website of Clyde Jhedrick Prado, featuring About Me, Education, and Contact Information.">
+    <meta name="author" content="Clyde Jhedrick Prado">
+    <title>Clyde Jhedrick Prado | Personal Portfolio</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --bg-elevated: #121a2b;
+        --bg-card: #151f33;
+        --bg-soft: #18243b;
+        --text: #e8eefc;
+        --muted: #b4c0dd;
+        --subtle: #8ea0c7;
+        --border: #273554;
+        --blue: #5b8cff;
+        --purple: #8b5cf6;
+        --blue-glow: rgba(91, 140, 255, 0.22);
+        --shadow: 0 16px 40px rgba(3, 8, 20, 0.35);
+        --radius: 16px;
+        --max-width: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.65;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(91, 140, 255, 0.16), transparent 28%),
+          radial-gradient(circle at top right, rgba(139, 92, 246, 0.14), transparent 24%),
+          linear-gradient(180deg, #09101d 0%, var(--bg) 42%, #080d18 100%);
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
+      a {
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      a:hover,
+      a:focus-visible {
+        color: #ffffff;
+      }
+
+      p,
+      li,
+      dd {
+        color: var(--muted);
+      }
+
+      strong {
+        color: var(--text);
+      }
+
+      ul {
+        padding-left: 1.2rem;
+      }
+
+      hr {
+        border: 0;
+        height: 1px;
+        margin: 0;
+        background: linear-gradient(90deg, transparent, var(--border), transparent);
+      }
+
+      body > header,
+      main > section,
+      body > footer {
+        width: min(calc(100% - 2rem), var(--max-width));
+        margin: 0 auto;
+      }
+
+      body > header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        margin-top: 1rem;
+        background: rgba(11, 16, 32, 0.82);
+        border: 1px solid rgba(39, 53, 84, 0.9);
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(3, 8, 20, 0.22);
+        backdrop-filter: blur(10px);
+      }
+
+      body > header > h1 {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+      }
+
+      nav[aria-label="Primary"] ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.35rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      nav[aria-label="Primary"] a {
+        display: inline-block;
+        padding: 0.45rem 0.75rem;
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 0.92rem;
+        transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      }
+
+      nav[aria-label="Primary"] a:hover,
+      nav[aria-label="Primary"] a:focus-visible {
+        color: var(--text);
+        background: rgba(91, 140, 255, 0.14);
+        transform: translateY(-1px);
+      }
+
+      main > section {
+        padding: 4.5rem 0;
+        scroll-margin-top: 7rem;
+      }
+
+      section > h2 {
+        margin: 0 0 1.25rem;
+        font-size: clamp(1.7rem, 2.4vw, 2.25rem);
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      section > h2::after {
+        content: "";
+        display: block;
+        width: 72px;
+        height: 4px;
+        margin-top: 0.75rem;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--blue), var(--purple));
+      }
+
+      h3 {
+        margin-top: 0;
+        margin-bottom: 0.65rem;
+        color: #f3f6ff;
+        line-height: 1.3;
+      }
+
+      #home {
+        display: grid;
+        grid-template-columns: minmax(0, 1.45fr) minmax(240px, 0.8fr);
+        align-items: center;
+        gap: 2rem;
+        padding-top: 5.5rem;
+      }
+
+      #home > h2 {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      #home > p:first-of-type {
+        margin: 0;
+        font-size: clamp(2.2rem, 5vw, 4rem);
+        font-weight: 800;
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+        color: var(--text);
+      }
+
+      #home > p:first-of-type::before {
+        content: "Clyde Jhedrick Prado";
+        display: block;
+        margin-bottom: 0.75rem;
+        font-size: clamp(1rem, 1.6vw, 1.15rem);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #bcd0ff;
+      }
+
+      #home > figure {
+        grid-column: 2;
+        grid-row: 1 / span 3;
+        margin: 0;
+        padding: 1rem;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: linear-gradient(180deg, rgba(21, 31, 51, 0.95), rgba(18, 26, 43, 0.95));
+        box-shadow: var(--shadow);
+        text-align: center;
+      }
+
+      #home > figure img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 18px;
+        border: 1px solid #314467;
+        background:
+          linear-gradient(135deg, rgba(91, 140, 255, 0.28), rgba(139, 92, 246, 0.28)),
+          linear-gradient(180deg, #1a2742, #10182a);
+      }
+
+      #home > figure figcaption {
+        margin-top: 0.85rem;
+        font-size: 0.95rem;
+        color: var(--subtle);
+      }
+
+      #home > p:nth-of-type(2) {
+        margin: 0;
+      }
+
+      #home > p:nth-of-type(2) a {
+        display: inline-block;
+        padding: 0.85rem 1.2rem;
+        border: 0;
+        border-radius: 999px;
+        font: inherit;
+        font-weight: 700;
+        color: #08101f;
+        background: linear-gradient(135deg, #7aa2ff, #9b7bff);
+        box-shadow: 0 12px 28px rgba(91, 140, 255, 0.22);
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      }
+
+      #home > p:nth-of-type(2) a:hover,
+      #home > p:nth-of-type(2) a:focus-visible {
+        color: #08101f;
+        transform: translateY(-2px);
+        box-shadow: 0 16px 34px rgba(139, 92, 246, 0.28);
+        filter: brightness(1.04);
+      }
+
+      #about-me > p,
+      #education article,
+      #contact-information address,
+      #contact-information nav {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, rgba(21, 31, 51, 0.92), rgba(18, 26, 43, 0.92));
+        box-shadow: 0 10px 24px rgba(3, 8, 20, 0.16);
+      }
+
+      #about-me > p {
+        margin: 0;
+        padding: 1.25rem;
+      }
+
+      #education article {
+        position: relative;
+        margin: 0 0 1.25rem 1rem;
+        padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      #education article::before {
+        content: "";
+        position: absolute;
+        left: -1rem;
+        top: 1.55rem;
+        bottom: -1.25rem;
+        width: 2px;
+        background: linear-gradient(180deg, var(--blue), rgba(139, 92, 246, 0.25));
+      }
+
+      #education article:last-of-type::before {
+        bottom: 1.55rem;
+      }
+
+      #education article::after {
+        content: "";
+        position: absolute;
+        left: -1.45rem;
+        top: 1.35rem;
+        width: 0.85rem;
+        height: 0.85rem;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--blue), var(--purple));
+        box-shadow: 0 0 0 4px rgba(91, 140, 255, 0.12);
+      }
+
+      #education article:hover,
+      #contact-information address:hover,
+      #contact-information nav:hover {
+        transform: translateY(-4px);
+        border-color: #3d5f9f;
+        box-shadow: 0 18px 34px rgba(3, 8, 20, 0.24);
+      }
+
+      #contact-information {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem;
+        align-items: start;
+      }
+
+      #contact-information > h2 {
+        grid-column: 1 / -1;
+      }
+
+      address {
+        margin: 0;
+        padding: 1.25rem;
+        font-style: normal;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      address p {
+        margin: 0 0 0.85rem;
+      }
+
+      address p:last-child {
+        margin-bottom: 0;
+      }
+
+      address a,
+      #contact-information nav a {
+        color: #c9d8ff;
+        transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+      }
+
+      address a:hover,
+      address a:focus-visible,
+      #contact-information nav a:hover,
+      #contact-information nav a:focus-visible {
+        color: #ffffff;
+        border-color: #5476c8;
+      }
+
+      #contact-information nav {
+        padding: 1.25rem;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      #contact-information nav h3 {
+        margin-bottom: 0.8rem;
+      }
+
+      #contact-information nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      #contact-information nav a {
+        display: inline-block;
+        padding: 0.5rem 0.85rem;
+        border: 1px solid #314467;
+        border-radius: 999px;
+        background: rgba(21, 31, 51, 0.8);
+      }
+
+      body > footer {
+        padding: 1rem 0 3rem;
+        color: var(--subtle);
+        text-align: center;
+      }
+
+      body > footer p {
+        margin: 0.5rem 0;
+      }
+
+      body > footer a {
+        color: #bfd2ff;
+      }
+
+      body > footer a:hover,
+      body > footer a:focus-visible {
+        color: #ffffff;
+      }
+
+      @media (max-width: 980px) {
+        body > header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        nav[aria-label="Primary"] ul {
+          justify-content: flex-start;
+        }
+
+        #home,
+        #contact-information {
+          grid-template-columns: 1fr;
+        }
+
+        #home > figure {
+          grid-column: auto;
+          grid-row: auto;
+          max-width: 340px;
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 640px) {
+        body > header,
+        main > section,
+        body > footer {
+          width: min(calc(100% - 1.25rem), var(--max-width));
+        }
+
+        body > header {
+          top: 0;
+          margin-top: 0.625rem;
+          padding: 0.9rem;
+          border-radius: 14px;
+        }
+
+        main > section {
+          padding: 3.5rem 0;
+          scroll-margin-top: 9rem;
+        }
+
+        #home {
+          padding-top: 3.75rem;
+          gap: 1.25rem;
+        }
+
+        nav[aria-label="Primary"] a {
+          padding: 0.4rem 0.65rem;
+          font-size: 0.88rem;
+        }
+
+        #education article {
+          margin-left: 0.65rem;
+          padding: 1rem 1rem 1rem 1.15rem;
+        }
+
+        #education article::before {
+          left: -0.65rem;
+        }
+
+        #education article::after {
+          left: -1.05rem;
+        }
+
+        #home > p:nth-of-type(2) a {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Clyde Jhedrick Prado</h1>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about-me">About Me</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact-information">Contact Information</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" aria-labelledby="home-heading">
+        <h2 id="home-heading">Home</h2>
+        <p>Welcome to my personal portfolio</p>
+        <figure>
+          <img src="images/profile.jpg" alt="Portrait of Clyde Jhedrick Prado" width="240" height="240">
+          <figcaption>Portrait of Clyde Jhedrick Prado</figcaption>
+        </figure>
+        <p>
+          <a href="#contact-information" title="Go to contact information section">Contact Me</a>
+        </p>
+      </section>
+
+      <hr>
+
+      <section id="about-me" aria-labelledby="about-me-heading">
+        <h2 id="about-me-heading">About Me</h2>
+        <p>A 5'6" Gemini with Filipino roots, carrying both Bisaya and Ilocano heritage. I enjoy gaming, going out, and making the most of life.</p>
+      </section>
+
+      <hr>
+
+      <section id="education" aria-labelledby="education-heading">
+        <h2 id="education-heading">Education</h2>
+        <article>
+          <h3>Bachelor of Science in Computer Science (BSCS)</h3>
+          <p><strong>Institution:</strong> Data Center College of the Philippines</p>
+          <p><strong>Institution Location:</strong> Bangued, Abra</p>
+          <p><strong>Additional Location Detail:</strong> Ubbog, Lipcan, Bangued, Abra</p>
+          <p><strong>Academic Year:</strong> 2026–2027</p>
+        </article>
+      </section>
+
+      <hr>
+
+      <section id="contact-information" aria-labelledby="contact-information-heading">
+        <h2 id="contact-information-heading">Contact Information</h2>
+        <address>
+          <p><strong>Email:</strong> <a href="mailto:cjscottprado@gmail.com">cjscottprado@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:09060674667">09060674667</a></p>
+          <p><strong>Location:</strong> Kimmalaba, Dolores, Abra, Philippines</p>
+        </address>
+
+        <nav aria-label="Social media profiles">
+          <h3>Social Media</h3>
+          <ul>
+            <li><a href="https://www.facebook.com/clyde.prado.777" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a href="https://www.instagram.com/clydieeprado/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@clydieeprado" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+            <li><a href="https://github.com/cjscottprado-ctrl" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          </ul>
+        </nav>
+      </section>
+    </main>
+
+    <footer>
+      <p><a href="#home">Back to top</a></p>
+      <p>Inspired by the <a href="https://github.com/OSSPhilippines/freefolio/tree/main/aurora" target="_blank" rel="noopener noreferrer">Aurora template</a> from <a href="https://github.com/OSSPhilippines/freefolio" target="_blank" rel="noopener noreferrer">Freefolio</a> by OSS Philippines.</p>
+      <p>&copy; <time datetime="[year]">[Year Placeholder]</time> Clyde Jhedrick Prado. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
